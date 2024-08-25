@@ -11,14 +11,16 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "stars": {
+    "star": {
       "type": "integer",
-      "required": true,
       "default": 0,
-      "max": 5
+      "required": true,
+      "max": 5,
+      "min": 0
     },
-    "textRating": {
-      "type": "text"
+    "comment": {
+      "type": "text",
+      "maxLength": 8000
     }
   }
 }

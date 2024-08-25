@@ -65,6 +65,11 @@
       "inversedBy": "users",
       "configurable": false
     },
+    "points": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::point.point"
+    },
     "ratings": {
       "type": "relation",
       "relation": "oneToMany",

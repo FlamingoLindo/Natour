@@ -362,39 +362,33 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiEcoPointEcoPoint extends Schema.CollectionType {
-  collectionName: 'eco_points';
+export interface ApiPointPoint extends Schema.CollectionType {
+  collectionName: 'points';
   info: {
-    singularName: 'eco-point';
-    pluralName: 'eco-points';
-    displayName: 'EcoPoint';
+    singularName: 'point';
+    pluralName: 'points';
+    displayName: 'Point';
     description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    midia: Attribute.Media<'images' | 'videos', true> & Attribute.Required;
     name: Attribute.String &
       Attribute.Required &
       Attribute.SetMinMaxLength<{
-        minLength: 3;
+        maxLength: 3;
       }>;
-    businessHours: Attribute.Time & Attribute.Required;
-    link: Attribute.String & Attribute.Required;
-    phoneNumber: Attribute.String & Attribute.Required;
-    approved: Attribute.Boolean &
-      Attribute.Required &
-      Attribute.DefaultTo<false>;
-    adress: Attribute.String & Attribute.Required;
-    city: Attribute.String & Attribute.Required;
-    zipCode: Attribute.String & Attribute.Required;
-    complement: Attribute.String;
-    neighborhood: Attribute.String & Attribute.Required;
-    number: Attribute.String & Attribute.Required;
-    description: Attribute.Text & Attribute.Required;
+    active: Attribute.Boolean;
+    midia: Attribute.Media<'images' | 'videos', true> & Attribute.Required;
+    websiteURL: Attribute.String;
+    latitude: Attribute.Float & Attribute.Required;
+    longitude: Attribute.Float;
+    adress: Attribute.String;
+    number: Attribute.Integer;
+    workingHour: Attribute.Time;
     ratings: Attribute.Relation<
-      'api::eco-point.eco-point',
+      'api::point.point',
       'oneToMany',
       'api::rating.rating'
     >;
@@ -402,13 +396,13 @@ export interface ApiEcoPointEcoPoint extends Schema.CollectionType {
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::eco-point.eco-point',
+      'api::point.point',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::eco-point.eco-point',
+      'api::point.point',
       'oneToOne',
       'admin::user'
     > &
@@ -427,16 +421,20 @@ export interface ApiRatingRating extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    stars: Attribute.Integer &
+    star: Attribute.Integer &
       Attribute.Required &
       Attribute.SetMinMax<
         {
+          min: 0;
           max: 5;
         },
         number
       > &
       Attribute.DefaultTo<0>;
-    textRating: Attribute.Text;
+    comment: Attribute.Text &
+      Attribute.SetMinMaxLength<{
+        maxLength: 8000;
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -816,6 +814,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.role'
     >;
+    points: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::point.point'
+    >;
     ratings: Attribute.Relation<
       'plugin::users-permissions.user',
       'oneToMany',
@@ -895,7 +898,7 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::eco-point.eco-point': ApiEcoPointEcoPoint;
+      'api::point.point': ApiPointPoint;
       'api::rating.rating': ApiRatingRating;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;

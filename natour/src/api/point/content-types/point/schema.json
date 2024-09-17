@@ -15,7 +15,7 @@
     "name": {
       "type": "string",
       "required": true,
-      "maxLength": 3
+      "minLength": 3
     },
     "active": {
       "type": "boolean"
@@ -52,6 +52,11 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::rating.rating"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
     }
   }
 }

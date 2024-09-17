@@ -362,6 +362,37 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
+export interface ApiCommentComment extends Schema.CollectionType {
+  collectionName: 'comments';
+  info: {
+    singularName: 'comment';
+    pluralName: 'comments';
+    displayName: 'Comment';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    comment: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::comment.comment',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::comment.comment',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPointPoint extends Schema.CollectionType {
   collectionName: 'points';
   info: {
@@ -377,7 +408,7 @@ export interface ApiPointPoint extends Schema.CollectionType {
     name: Attribute.String &
       Attribute.Required &
       Attribute.SetMinMaxLength<{
-        maxLength: 3;
+        minLength: 3;
       }>;
     active: Attribute.Boolean;
     midia: Attribute.Media<'images' | 'videos', true> & Attribute.Required;
@@ -391,6 +422,11 @@ export interface ApiPointPoint extends Schema.CollectionType {
       'api::point.point',
       'oneToMany',
       'api::rating.rating'
+    >;
+    user: Attribute.Relation<
+      'api::point.point',
+      'oneToOne',
+      'plugin::users-permissions.user'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -898,6 +934,7 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
+      'api::comment.comment': ApiCommentComment;
       'api::point.point': ApiPointPoint;
       'api::rating.rating': ApiRatingRating;
       'plugin::upload.file': PluginUploadFile;

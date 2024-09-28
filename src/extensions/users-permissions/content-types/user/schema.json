@@ -77,6 +77,13 @@
     },
     "deactivationReason": {
       "type": "text"
+    },
+    "photo": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }

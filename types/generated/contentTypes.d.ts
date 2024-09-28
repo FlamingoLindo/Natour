@@ -781,6 +781,7 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'api::rating.rating'
     >;
     deactivationReason: Attribute.Text;
+    photo: Attribute.Media<'images'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -858,6 +859,37 @@ export interface ApiCommentComment extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::comment.comment',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiDonationDonation extends Schema.CollectionType {
+  collectionName: 'donations';
+  info: {
+    singularName: 'donation';
+    pluralName: 'donations';
+    displayName: 'Donation';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    link: Attribute.String & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::donation.donation',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::donation.donation',
       'oneToOne',
       'admin::user'
     > &
@@ -984,6 +1016,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::client.client': ApiClientClient;
       'api::comment.comment': ApiCommentComment;
+      'api::donation.donation': ApiDonationDonation;
       'api::point.point': ApiPointPoint;
       'api::rating.rating': ApiRatingRating;
     }

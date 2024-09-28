@@ -48,15 +48,23 @@
     "workingHour": {
       "type": "time"
     },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "comments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::comment.comment"
+    },
     "ratings": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::rating.rating"
     },
-    "user": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "plugin::users-permissions.user"
+    "deactivationReason": {
+      "type": "text"
     }
   }
 }

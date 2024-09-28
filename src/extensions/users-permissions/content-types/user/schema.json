@@ -74,6 +74,9 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::rating.rating"
+    },
+    "deactivationReason": {
+      "type": "text"
     }
   }
 }

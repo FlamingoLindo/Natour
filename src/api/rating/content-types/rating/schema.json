@@ -4,23 +4,20 @@
   "info": {
     "singularName": "rating",
     "pluralName": "ratings",
-    "displayName": "Rating"
+    "displayName": "Rating",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "star": {
+    "score": {
       "type": "integer",
       "default": 0,
       "required": true,
       "max": 5,
       "min": 0
-    },
-    "comment": {
-      "type": "text",
-      "maxLength": 8000
     }
   }
 }

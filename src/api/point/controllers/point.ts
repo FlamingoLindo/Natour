@@ -4,4 +4,5 @@
 
 import { factories } from '@strapi/strapi'
 
-export default factories.createCoreController('api::point.point');
+export default factories.createCoreController('api::point.point', ({ strapi }) => ({
+}));

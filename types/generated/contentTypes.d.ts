@@ -866,12 +866,12 @@ export interface ApiCommentComment extends Schema.CollectionType {
   };
 }
 
-export interface ApiDonationDonation extends Schema.CollectionType {
-  collectionName: 'donations';
+export interface ApiDonateDonate extends Schema.CollectionType {
+  collectionName: 'donates';
   info: {
-    singularName: 'donation';
-    pluralName: 'donations';
-    displayName: 'Donation';
+    singularName: 'donate';
+    pluralName: 'donates';
+    displayName: 'Donate';
   };
   options: {
     draftAndPublish: true;
@@ -883,13 +883,13 @@ export interface ApiDonationDonation extends Schema.CollectionType {
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::donation.donation',
+      'api::donate.donate',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::donation.donation',
+      'api::donate.donate',
       'oneToOne',
       'admin::user'
     > &
@@ -1016,7 +1016,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::client.client': ApiClientClient;
       'api::comment.comment': ApiCommentComment;
-      'api::donation.donation': ApiDonationDonation;
+      'api::donate.donate': ApiDonateDonate;
       'api::point.point': ApiPointPoint;
       'api::rating.rating': ApiRatingRating;
     }

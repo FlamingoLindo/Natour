@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "donations",
+  "collectionName": "donates",
   "info": {
-    "singularName": "donation",
-    "pluralName": "donations",
-    "displayName": "Donation"
+    "singularName": "donate",
+    "pluralName": "donates",
+    "displayName": "Donate"
   },
   "options": {
     "draftAndPublish": true

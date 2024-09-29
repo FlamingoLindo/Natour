@@ -897,6 +897,36 @@ export interface ApiDonateDonate extends Schema.CollectionType {
   };
 }
 
+export interface ApiOperationOperation extends Schema.CollectionType {
+  collectionName: 'operations';
+  info: {
+    singularName: 'operation';
+    pluralName: 'operations';
+    displayName: 'Operation';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::operation.operation',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::operation.operation',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPointPoint extends Schema.CollectionType {
   collectionName: 'points';
   info: {
@@ -1017,6 +1047,7 @@ declare module '@strapi/types' {
       'api::client.client': ApiClientClient;
       'api::comment.comment': ApiCommentComment;
       'api::donate.donate': ApiDonateDonate;
+      'api::operation.operation': ApiOperationOperation;
       'api::point.point': ApiPointPoint;
       'api::rating.rating': ApiRatingRating;
     }

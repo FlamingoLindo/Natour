@@ -18,6 +18,12 @@
       "required": true,
       "max": 5,
       "min": 0
+    },
+    "point": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::point.point",
+      "inversedBy": "ratings"
     }
   }
 }

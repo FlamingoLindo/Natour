@@ -1008,6 +1008,11 @@ export interface ApiRatingRating extends Schema.CollectionType {
         number
       > &
       Attribute.DefaultTo<0>;
+    point: Attribute.Relation<
+      'api::rating.rating',
+      'manyToOne',
+      'api::point.point'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

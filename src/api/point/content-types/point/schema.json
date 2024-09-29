@@ -61,7 +61,8 @@
     "ratings": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::rating.rating"
+      "target": "api::rating.rating",
+      "mappedBy": "point"
     },
     "deactivationReason": {
       "type": "text"

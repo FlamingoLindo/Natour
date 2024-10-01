@@ -1031,6 +1031,29 @@ export interface ApiRatingRating extends Schema.CollectionType {
   };
 }
 
+export interface ApiTermTerm extends Schema.CollectionType {
+  collectionName: 'terms';
+  info: {
+    singularName: 'term';
+    pluralName: 'terms';
+    displayName: 'Term';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    platafromTerm: Attribute.Text;
+    appTerm: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::term.term', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::term.term', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1055,6 +1078,7 @@ declare module '@strapi/types' {
       'api::operation.operation': ApiOperationOperation;
       'api::point.point': ApiPointPoint;
       'api::rating.rating': ApiRatingRating;
+      'api::term.term': ApiTermTerm;
     }
   }
 }

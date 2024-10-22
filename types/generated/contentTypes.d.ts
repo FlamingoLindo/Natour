@@ -951,7 +951,7 @@ export interface ApiPointPoint extends Schema.CollectionType {
     longitude: Attribute.Float;
     adress: Attribute.String;
     number: Attribute.Integer;
-    workingHour: Attribute.Time;
+    businessHourStart: Attribute.Time;
     user: Attribute.Relation<
       'api::point.point',
       'oneToOne',
@@ -968,6 +968,7 @@ export interface ApiPointPoint extends Schema.CollectionType {
       'api::rating.rating'
     >;
     deactivationReason: Attribute.Text;
+    businessHourEnd: Attribute.Time;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

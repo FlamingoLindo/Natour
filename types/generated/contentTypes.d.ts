@@ -1038,13 +1038,14 @@ export interface ApiTermTerm extends Schema.CollectionType {
     singularName: 'term';
     pluralName: 'terms';
     displayName: 'Term';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     platafromTerm: Attribute.Text;
-    appTerm: Attribute.Text;
+    privacyPolitics: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

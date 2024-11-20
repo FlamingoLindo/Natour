@@ -799,42 +799,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
-export interface ApiClientClient extends Schema.CollectionType {
-  collectionName: 'clients';
-  info: {
-    singularName: 'client';
-    pluralName: 'clients';
-    displayName: 'Client';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    active: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<false>;
-    Name: Attribute.String;
-    user: Attribute.Relation<
-      'api::client.client',
-      'oneToOne',
-      'plugin::users-permissions.user'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::client.client',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::client.client',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiCommentComment extends Schema.CollectionType {
   collectionName: 'comments';
   info: {
@@ -949,7 +913,7 @@ export interface ApiPointPoint extends Schema.CollectionType {
     websiteURL: Attribute.String;
     latitude: Attribute.Float & Attribute.Required;
     longitude: Attribute.Float;
-    adress: Attribute.String;
+    address: Attribute.String;
     number: Attribute.Integer;
     businessHourStart: Attribute.Time;
     user: Attribute.Relation<
@@ -1074,7 +1038,6 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'api::client.client': ApiClientClient;
       'api::comment.comment': ApiCommentComment;
       'api::donate.donate': ApiDonateDonate;
       'api::operation.operation': ApiOperationOperation;

@@ -39,7 +39,7 @@
     "longitude": {
       "type": "float"
     },
-    "adress": {
+    "address": {
       "type": "string"
     },
     "number": {
